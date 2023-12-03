@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import SiteLayout from '@/Layouts/SiteLayout.vue';
 
 defineProps({
     canLogin: {
@@ -20,9 +20,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="flex justify-center items-center min-h-screen">
-        <h1 class="text-5xl text-emerald-800 font-extrabold">Hello</h1>
-    </div>
-    
-    
+    <SiteLayout>
+
+    </SiteLayout>
 </template>
