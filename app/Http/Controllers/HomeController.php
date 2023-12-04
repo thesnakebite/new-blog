@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $posts= Post::with('category')->get();
+        $posts= Post::with('category', 'tags')->get();
 
         return Inertia::render('Home', [
             'posts' => $posts,

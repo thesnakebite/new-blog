@@ -45,25 +45,21 @@ const { props } = defineProps({
                     <i class="fa fa-user"></i>
                     <a href="#">Admin</a>
                 </div>
-                <!-- End Author Name -->
                 <!-- Tags -->
                 <div class="blog-post-details-item blog-post-details-item-left blog-post-details-tags tags-icon">
                     <i class="fa fa-tag"></i>
-                    <a href="#">jQuery</a> ,
-                    <a href="#">Ruby</a> ,
-                    <a href="#">Javascript</a>
+                    <span v-for="(tag, index) in post.tags" :key="tag.id">
+                        <a href="#">{{ tag.name }}</a><span v-if="index < post.tags.length - 1">, </span>
+                    </span>
+
                 </div>
-                <!-- End Tags -->
-                <!-- # of Comments -->
-                <div
-                    
-                    class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last comments-icon">
+                <!-- Categoría -->
+                <div class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last comments-icon">
                     <a href="#">
                         <i class="fa fa-comments"></i>
                         {{ post.category.name }}
                     </a>
                 </div>
-                <!-- End # of Comments -->
             </div>
             <!-- End Blog Item Details -->
             <!-- Blog Item Body -->
