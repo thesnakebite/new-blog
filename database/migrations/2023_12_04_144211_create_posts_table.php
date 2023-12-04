@@ -17,6 +17,7 @@ return new class extends Migration
             $table->mediumText('excerpt');
             $table->text('body');
             $table->timestamp('published_at')->nullable();
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
         });
     }

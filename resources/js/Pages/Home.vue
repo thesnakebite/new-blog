@@ -56,10 +56,11 @@ const { props } = defineProps({
                 <!-- End Tags -->
                 <!-- # of Comments -->
                 <div
+                    
                     class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last comments-icon">
                     <a href="#">
                         <i class="fa fa-comments"></i>
-                        3 Comments
+                        {{ post.category.name }}
                     </a>
                 </div>
                 <!-- End # of Comments -->
