@@ -24,7 +24,9 @@ Route::get('/post', function() {
     return Post::all();
 });
 
-Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index'])
+    ->middleware('auth')
+    ->name('admin.index');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

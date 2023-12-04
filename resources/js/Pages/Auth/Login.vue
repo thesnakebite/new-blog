@@ -1,11 +1,8 @@
 <script setup>
 import Checkbox from '@/Components/Checkbox.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
+
 import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Link, useForm } from '@inertiajs/vue3';
 
 defineProps({
     canResetPassword: {
@@ -14,6 +11,7 @@ defineProps({
     status: {
         type: String,
     },
+    
 });
 
 const form = useForm({
@@ -38,17 +36,15 @@ const submit = () => {
               <div class="card-body px-5 py-5">
                 <h3 class="card-title text-start mb-3">Login</h3>
                 <form @submit.prevent="submit">
-
-
                   <div class="form-group">
                     <label>Email *</label>
                     <input class="form-control p_input" 
                            id="email" 
                            type="email" 
                            v-model="form.email"
-                           required
                            autofocus
                     >
+                    <InputError class="mt-2" :message="form.errors.password" />
                     
                   </div>
                   <div class="form-group">
@@ -57,17 +53,25 @@ const submit = () => {
                            class="form-control p_input" 
                            id="password" 
                            v-model="form.password" 
-                           required 
+                            
                            autocomplete="current-password"
                     >
+                    <InputError class="mt-2" :message="form.errors.password" />
                     
                   </div>
                   <div class="form-group d-flex align-items-center justify-content-between">
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input"> Remember me </label>
+                        <Checkbox name="remember" v-model:checked="form.remember" />
+                        Acuérdate de mí
+                      </label>
                     </div>
-                    <a href="#" class="forgot-pass">Forgot password</a>
+                    <Link
+                       v-if="canResetPassword"
+                       :href="route('password.request')"
+                       class="forgot-pass">
+                       Has olvidado tu contraseña
+                    </Link>
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
@@ -78,7 +82,7 @@ const submit = () => {
                     <button class="btn btn-google col">
                       <i class="mdi mdi-google-plus"></i> Google plus </button>
                   </div>
-                  <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p>
+                  <!-- <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p> -->
                 </form>
               </div>
             </div>
