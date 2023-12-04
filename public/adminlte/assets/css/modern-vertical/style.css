@@ -29346,7 +29346,7 @@ div.tagsinput span.tag a {
 }
 
 .page-body-wrapper {
-  min-height: calc(100vh - 70px);
+  min-height: 100vh;
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: row;
