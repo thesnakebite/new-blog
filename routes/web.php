@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,6 +19,10 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [HomeController::class, 'index'] );
+
+Route::get('/post', function() {
+    return Post::all();
+});
 
 Route::get('/admin', [AdminController::class, 'index']);
 
