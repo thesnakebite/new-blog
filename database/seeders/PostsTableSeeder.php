@@ -40,7 +40,7 @@ class PostsTableSeeder extends Seeder
         $post->published_at = Carbon::now()->subDays(3);
         $post->save();
 
-        $pos = new Post();
+        $post = new Post();
         $post->title = "Mi tercer post";
         $post->excerpt = "Extracto de mi tercer post";
         $post->body = "<p>Contenido de mi tercer post</p>";

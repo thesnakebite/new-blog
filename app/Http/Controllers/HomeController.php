@@ -16,7 +16,6 @@ class HomeController extends Controller
 
         return Inertia::render('Home', [
             'posts' => $posts,
-            'isAdminArea' => false,
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,

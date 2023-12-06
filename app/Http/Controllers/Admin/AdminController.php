@@ -12,8 +12,6 @@ class AdminController extends Controller
     {
         Inertia::setRootView('admin');
 
-        return Inertia::render('Admin/Dashboard', [
-            'isAdminArea' => true,
-        ]);
+        return Inertia::render('Admin/Dashboard');
     }
 }

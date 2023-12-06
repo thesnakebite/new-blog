@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Post;
@@ -24,13 +25,14 @@ Route::get('/post', function() {
     return Post::all();
 });
 
-Route::get('/admin', [AdminController::class, 'index'])
-    ->middleware('auth')
-    ->name('admin.index');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Admin
+Route::group([
+    'prefix' => 'admin', 
+    'middleware' => 'auth'],
+     function() {
+        Route::get(('/'), [AdminController::class, 'index'])->name('dashboard');
+        Route::get('/posts', [PostsController::class, 'index'])->name('admin.posts.index');
+    });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
