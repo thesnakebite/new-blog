@@ -1,8 +1,14 @@
-import AdminLayout from '@/Layouts/AdminLayout.vue';
 <script setup>
     import { Link, usePage } from '@inertiajs/vue3'
 
     const { auth } = usePage().props;
+
+    const { url } = usePage();
+
+    const isActive = (routeName) => {
+        return url.startsWith(route(routeName));
+    };
+
 </script>
 
 <template>
@@ -61,15 +67,17 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
         <li class="nav-item nav-category">
             <span class="nav-link">Navegación</span>
         </li>
-        <li class="nav-item menu-items">
-        <Link class="nav-link" :href="route('dashboard')">
+        <li class="nav-item menu-items" :class="{'active': isActive('dashboard')}">
+        <a class="nav-link"
+              :href="route('dashboard')"
+        >
             <span class="menu-icon">
             <i class="mdi mdi-view-dashboard"></i>
             </span>
             <span class="menu-title">Inicio</span>
-        </Link>
+        </a>
         </li>
-        <li class="nav-item menu-items">
+        <li class="nav-item menu-items" :class="{'active': isActive('admin.posts.index')}">
             <a class="nav-link" data-bs-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
                 <span class="menu-icon">
                     <i class="mdi mdi-view-list"></i>
@@ -77,17 +85,21 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
                 <span class="menu-title">Blog</span>
                     <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="page-layouts">
+            <div class="visible" id="page-layouts">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <Link
-                         class="nav-link" :href="route('admin.posts.index')">
-                            Ver todos los posts
-                            <i class="fa-eye"></i>
-                        </Link>
+                        <a class="nav-link" 
+                           :href="route('admin.posts.index')"
+                        >
+                        Ver todos los posts
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Crear un post</a>
+                        <a class="nav-link" 
+                           :href="route('admin.posts.create')"
+                        >
+                        Crear un post
+                        </a>
                     </li>
                 </ul>
             </div>

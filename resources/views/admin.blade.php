@@ -8,14 +8,12 @@
         <!-- Estilos para AdminLTE -->
         <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/mdi/css/materialdesignicons.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/jvectormap/jquery-jvectormap.css') }}" />
-        <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/flag-icon-css/css/flag-icon.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/owl-carousel-2/owl.carousel.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/owl-carousel-2/owl.theme.default.min.css') }}" />
+
         <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/css/vendor.bundle.base.css') }}" />
         <link rel="stylesheet" href="{{ asset('adminlte/assets/css/modern-vertical/style.css') }}" />
         {{-- Table cs --}}
         <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}" />
-        <link rel="shortcut icon" href="{{ asset('adminlte/assets/images/favicon.png') }}">
+        <link rel="shortcut icon" href="{{ asset('adminlte/assets/images/favicon.png') }}" />
         <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/font-awesome/css/font-awesome.min.css') }}" />
 
         <!-- Scripts -->
@@ -28,8 +26,6 @@
         @inertia
             <!-- Scripts para AdminLTE -->
             <script src="{{ asset('adminlte/assets/vendors/js/vendor.bundle.base.js') }}"></script>
-            <script src="{{ asset('adminlte/assets/vendors/chart.js/Chart.min.js') }}"></script>
-            <script src="{{ asset('adminlte/assets/vendors/progressbar.js/progressbar.min.js') }}"></script>
 
 
             <script src="{{ asset('adminlte/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>

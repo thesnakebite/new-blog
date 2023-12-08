@@ -19,4 +19,11 @@ class PostsController extends Controller
             'posts' => $posts
         ]);
     }
+
+    public function create()
+    {
+        Inertia::setRootView('admin');
+
+        return Inertia::render('Admin/Posts/Create');
+    }
 }
