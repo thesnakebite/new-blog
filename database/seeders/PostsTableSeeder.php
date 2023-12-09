@@ -24,6 +24,10 @@ class PostsTableSeeder extends Seeder
         $category->name = "Categoría 2";
         $category->save();
 
+        $category = new Category();
+        $category->name = "Categoría 3";
+        $category->save();
+
         $post = new Post();
         $post->title = "Mi primer post";
         $post->excerpt = "Extracto de mi primer post";

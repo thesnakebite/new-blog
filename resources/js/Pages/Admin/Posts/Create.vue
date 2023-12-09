@@ -8,9 +8,11 @@
     import VueDatePicker from '@vuepic/vue-datepicker';
     import '@vuepic/vue-datepicker/dist/main.css'
 
-    const { props } = defineProps({
-      posts: Array,
+    const { categories } = defineProps({
+      categories: Array,
     })
+
+    const category_id = ref('');
 
     const published_at = ref();
     const textInputOptions = {
@@ -34,26 +36,34 @@
     {
         border: 1px solid #6b7280 !important;
     }
-
-    /* .dp__pointer {
+    
+    .dp__main.dp__theme_light .dp__input_wrap .dp__input {
         background-color: #2c2e33;
-        border: 1px solid #6b7280;
         color: white;
     }
 
-    .dp__outer_menu_wrap, 
-    .dp--menu-wrapper {
+    .dp__main.dp__theme_light .dp__menu.dp__menu_index {
         background-color: #2c2e33;
     }
 
-    .dp__menu, 
-    .dp__menu_index, 
-    .dp__theme_light {
-        background-color: #2c2e33;
-    }
-
-    .p__btn .dp__month_year_select {
+    .dp__btn.dp__month_year_select {
         color: white;
+    }
+
+    .dp__calendar_header_item {
+        color: white;
+    }
+
+    .dp__cell_inner.dp__pointer.dp__date_hover {
+        color: white;
+    }
+
+    .dp__main.dp__theme_light .dp__input::placeholder {
+        color: #b0b0b0;
+    }
+
+    .dp__selection_preview {
+        color: white;;
     }
 
     .dp__action_button,
@@ -62,53 +72,13 @@
         color: white;
     }
 
-    .dp__action_button,
-    .dp__action_select {
-        background-color: blue;
-        color: white;
-    } */
+    .dp__main.dp__theme_light .dp__btn.dp--arrow-btn-nav {
+        color: #4a90e2;
+    }
 
-
-
-.dp__main.dp__theme_light .dp__input_wrap .dp__input {
-  background-color: #2c2e33;
-  color: white;
-}
-
-.dp__main.dp__theme_light .dp__menu.dp__menu_index {
-  background-color: #2c2e33;
-}
-
-.dp__btn.dp__month_year_select {
-    color: white;
-}
-
-.dp__calendar_header_item {
-    color: white;
-}
-
-.dp__cell_inner.dp__pointer.dp__date_hover {
-    color: white;
-}
-
-.dp__main.dp__theme_light .dp__input::placeholder {
-  color: #b0b0b0;
-}
-
-.dp__selection_preview {
-    color: white;;
-}
-
-.dp__action_button,
-.dp__action_cancel {
-    background-color: black;
-    color: white;
-}
-
-
-.dp__main.dp__theme_light .dp__btn.dp--arrow-btn-nav {
-  color: #4a90e2;
-}
+    .js-example-basic-single {
+        background-color: #2c2e33;
+    }
 
 </style>
 
@@ -158,12 +128,29 @@
                                 />
                             </div>
                             <div class="form-group">
+                                <label>Categorías</label>
+                                <select v-model="category_id" 
+                                        class="js-example-basic-single" 
+                                        style="width:100%"
+                                >
+                                    <option class="form-control" disabled value="">Selecciona una categoría</option>
+                                    <option v-for="category in categories" 
+                                            :key="category.id" 
+                                            value="category.id">
+                                            {{ category.name }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleExcerpt">Extracto de la publicación</label>
-                                <input v-model="excerpt" type="text" class="form-control" id="exampleExcerpt" placeholder="Ingresa aquí el extracto de la publicación">
+                                <input v-model="excerpt" 
+                                       class="form-control" 
+                                       id="exampleExcerpt" 
+                                       placeholder="Ingresa aquí el extracto de la publicación"
+                                />
                             </div>
 
-                            <button type="submit" class="btn btn-primary me-2">Submit</button>
-                            <button class="btn btn-dark">Cancel</button>
+                            <button type="submit" class="btn btn-primary me-2 w-full">Guardar publicación</button>
                         </div>
                     </div>
                 </div>
