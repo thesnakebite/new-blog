@@ -7,12 +7,11 @@
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
         <!-- Estilos para AdminLTE -->
         <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/mdi/css/materialdesignicons.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/jvectormap/jquery-jvectormap.css') }}" />
-
         <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/css/vendor.bundle.base.css') }}" />
         <link rel="stylesheet" href="{{ asset('adminlte/assets/css/modern-vertical/style.css') }}" />
         {{-- Table cs --}}
-        <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}" />
+        <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" />
+
         <link rel="shortcut icon" href="{{ asset('adminlte/assets/images/favicon.png') }}" />
         <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/font-awesome/css/font-awesome.min.css') }}" />
 
@@ -26,14 +25,14 @@
         @inertia
             <!-- Scripts para AdminLTE -->
             <script src="{{ asset('adminlte/assets/vendors/js/vendor.bundle.base.js') }}"></script>
-
+            <script src="{{ asset('adminlte/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
 
             <script src="{{ asset('adminlte/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
             <script src="{{ asset('adminlte/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
             <script src="{{ asset('adminlte/assets/js/data-table.js') }}"></script>
+            <script src="{{ asset('adminlte/assets/js/off-canvas.js')}}"></script>
 
-
-            <script src="{{ asset('adminlte/assets/vendors/owl-carousel-2/owl.carousel.min.js') }}"></script>
+            <script src="{{ asset('adminlte/assets/js/formpickers.js') }}"></script>
             <script src="{{ asset('adminlte/assets/js/jquery.cookie.js') }}"></script>
             <script src="{{ asset('adminlte/assets/js/hoverable-collapse.js') }}"></script>
             <script src="{{ asset('adminlte/assets/js/misc.js') }}"></script>

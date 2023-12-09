@@ -28,7 +28,7 @@
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
             <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/adminlte/assets/images/logo-mini.svg" alt="logo" /></a>
           </div>
-          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">  
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
               <span class="mdi mdi-menu"></span>
             </button>
@@ -221,12 +221,11 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <div class="row">
-              <div class="col-md-12 grid-margin stretch-card">
-                <slot></slot>
-              </div>
-            </div>
-          </div>
+
+        <!-- Contenido -->
+          <slot></slot>
+            
+        </div>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
           <footer class="footer">
