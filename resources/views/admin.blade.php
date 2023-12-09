@@ -11,14 +11,12 @@
         <link rel="stylesheet" href="{{ asset('adminlte/assets/css/modern-vertical/style.css') }}" />
         {{-- Table cs --}}
         <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('adminlte/assets/vendor/select2/select2.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}" />
-
+        <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/select2/select2.min.css') }}" />
 
         <link rel="shortcut icon" href="{{ asset('adminlte/assets/images/favicon.png') }}" />
         <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/font-awesome/css/font-awesome.min.css') }}" />
 
-        <!-- Scripts -->
+
         @routes
         
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
@@ -32,7 +30,6 @@
             <script src="{{ asset('adminlte/assets/vendors/select2/select2.min.js') }}"></script>
             <script src="{{ asset('adminlte/assets/js/select2.js') }}"></script>
 
-
             <script src="{{ asset('adminlte/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
             <script src="{{ asset('adminlte/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
             <script src="{{ asset('adminlte/assets/js/data-table.js') }}"></script>
@@ -45,5 +42,10 @@
             <script src="{{ asset('adminlte/assets/js/settings.js') }}"></script>
             <script src="{{ asset('adminlte/assets/js/todolist.js') }}"></script>
             <script src="{{ asset('adminlte/assets/js/dashboard.js') }}"></script>
+        
+            <script src="{{ asset('adminlte/assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>           
+            <script src="{{ asset('adminlte/assets/js/file-upload.js') }}"></script>
+            <script src="{{ asset('adminlte/assets/js/typeahead.js') }}"></script>
+            
     </body>
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,11 +23,15 @@ class PostsController extends Controller
     }
 
     public function create()
-    {
-        $categories = Category::all();
-
+    {   
         Inertia::setRootView('admin');
 
-        return Inertia::render('Admin/Posts/Create', compact('categories'));
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        return Inertia::render('Admin/Posts/Create', with([
+            'categories' => $categories,
+            'tags' => $tags
+        ]));
     }
 }
