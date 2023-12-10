@@ -1,36 +1,59 @@
 <script setup>
     import AdminLayout from '@/Layouts/AdminLayout.vue'
-    import { usePage, Link } from '@inertiajs/vue3'
-    import { ref, onMounted } from 'vue'
+    import { Link, useForm } from '@inertiajs/vue3'
+    import { ref, watch } from 'vue'
 
     import { QuillEditor } from '@vueup/vue-quill'
     import '@vueup/vue-quill/dist/vue-quill.snow.css'
     import VueDatePicker from '@vuepic/vue-datepicker';
     import '@vuepic/vue-datepicker/dist/main.css'
 
+    import VueMultiselect from 'vue-multiselect';
+
     const props = defineProps({
         categories: Array,
-        tags: Array
+        tags: Array,
     });
 
-    const category_id = ref('');
+    const selectedTags = ref([]);
 
-    const published_at = ref();
-    const textInputOptions = {
-        format: 'dd.MM.yyyy HH:mm'
-    };
+    watch(selectedTags, (newSelectedTags) => {
+        form.tags = newSelectedTags.map(tag => tag.id);
+    }, { deep: true });
 
-    const select2Element = ref(null);
-
-    onMounted(() => {
-        if (select2Element.value) {
-            $(select2Element.value).select2();
+    const handleSelect = (newTag) => {
+        if (!selectedTags.value.map(t => t.id).includes(newTag.id)) {
+            selectedTags.value.push(newTag);
         }
+    }
+
+    const handleRemove = (tagToRemove) => {
+        selectedTags.value = selectedTags.value.filter(tag => tag.id !== tagToRemove.id);
+    }
+
+    const form = useForm({
+        title: null,
+        body: null,
+        published_at: null,
+        category: '',
+        tags: [],
+        excerpt: null,
     })
+    
 </script>
 
 <style>
 
+
+    input.form-control {
+        border: 1px solid #6b7280;
+    }
+
+    .form-control::placeholder {
+        color: #6b7280;
+    }
+
+    /* Quill Editor */
     .ql-container {
         height: 300px !important;
     }
@@ -51,6 +74,7 @@
         border: 1px solid #6b7280 !important;
     }
     
+    /* Datepicker */
     .dp__main.dp__theme_light .dp__input_wrap .dp__input {
         background-color: transparent;
         color: white;
@@ -99,6 +123,7 @@
         color: #4a90e2;
     }
 
+    /* Categorías */
     .js-example-basic-single {
         background-color: transparent;
         color: #6b7280;
@@ -112,10 +137,20 @@
         padding-left: 8px;
     }
 
-    .form-control::placeholder {
-        color: #6b7280;
+    /* Tags */
+    .multiselect__tags {
+        background-color: transparent !important;
+        border-radius: 0% !important;
+        border: 1px solid #6b7280 !important;
     }
+
+    .multiselect__placeholder {
+        color: #6b7280 !important;
+    }
+    
 </style>
+
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
 
 <template>
     <AdminLayout>
@@ -134,18 +169,29 @@
             </nav>
         </div>
 
-        <form class="forms-sample">
+        <form @submit.prevent="form.post('/admin/posts')" class="forms-sample">
             <div class="row">
                 <div class="col-md-8 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body border-t-2 border-blue-600">
+                            <!-- Título -->
                             <div class="form-group">
                                 <label>Título de la publicación</label>
-                                <input v-model="title" type="text" class="form-control text-sm bg-transparent" placeholder="Ingresa aquí el título de la publicación">
+                                <input v-model="form.title" 
+                                       class="form-control text-sm bg-transparent rounded-none focus:border-blue-600 focus:border-2" 
+                                       placeholder="Ingresa aquí el título de la publicación"
+                                >
                             </div>
+                            <!-- Contenido del post -->
                             <div class="form-group">
                                 <label>Contenido de la publicación</label>
-                                <QuillEditor v-model="body" theme="snow" class="text-sm" placeholder="Escribe algo increible..." />
+                                <QuillEditor 
+                                    v-model:content="form.body"
+                                    :content-type="'html'" 
+                                    theme="snow" 
+                                    class="text-sm" 
+                                    placeholder="Escribe algo increible..." 
+                                />
                             </div>
                         </div>
                     </div>
@@ -154,51 +200,61 @@
                 <div class="col-md-4 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body border-t-2 border-blue-600">
+                            <!-- Fecha del post -->
                             <div class="form-group">
                                 <label>Fecha de publicación</label>
 
                                 <VueDatePicker 
-                                    v-model="published_at" 
+                                    v-model="form.published_at" 
                                     placeholder="Empieza a escribir ..."
                                     :text-input="textInputOptions"
                                 />
                             </div>
+                            <!-- Categorías -->
                             <div class="form-group">
                                 <label>Categorías</label>
-                                <select v-model="category_id" 
-                                        class="js-example-basic-single" 
-                                        style="width:100%"
+                                <select v-model="form.category" 
+                                        class="js-example-basic-single w-full"
                                 >
                                     <option class="form-control" 
                                             disabled value="">Selecciona una categoría</option>
                                     <option v-for="category in categories" 
                                             :key="category.id" 
-                                            value="category.id">
+                                            :value="category.id">
                                             {{ category.name }}
                                     </option>
                                 </select>
                             </div>
+                            <!-- Etiquetas -->
                             <div class="form-group">
                                 <label>Etiquetas</label>
-                                <select v-model="tag"
-                                        ref="select2Element"
-                                        class="js-example-basic-multiple"
-                                        data-placeholder="Selecciona una o varias etiquetas"
-                                        multiple="multiple" 
-                                        style="width:100%"
-                                >
-                                    <option v-for="tag in tags" :key="tag.id" value="tag.id">{{ tag.name }}</option>
-                                </select>
+                                <VueMultiselect
+                                    class="focus:border-blue-600 focus:border-2"
+                                    v-model="selectedTags"
+                                    :options="tags"
+                                    :multiple="true"
+                                    :taggable="true"
+                                    :close-on-select="true"
+                                    :clear-on-select="true"
+                                    :preserve-search="true"
+                                    @tag="handleSelect"
+                                    placeholder="Selecciona una o varias etiquetas"
+                                    label="name"
+                                    track-by="id"
+                                    @select="handleSelect"
+                                    @remove="handleRemove"
+                                />
                             </div>
+                            <!-- Extracto -->
                             <div class="form-group">
                                 <label>Extracto de la publicación</label>
-                                <input v-model="excerpt" 
-                                       class="form-control bg-transparent border-[1px] border-[#6b7280] rounded-none focus:border-blue-600 focus:border-2" 
+                                <input v-model="form.excerpt" 
+                                       class="form-control bg-transparent border-[2px] border-[#6b7280] rounded-none focus:border-blue-600 focus:border-2" 
                                        placeholder="Ingresa aquí el extracto de la publicación"
                                 />
                             </div>
 
-                            <button type="submit" class="btn btn-primary me-2 w-full">Guardar publicación</button>
+                            <button class="btn btn-primary me-2 w-full">Guardar publicación</button>
                         </div>
                     </div>
                 </div>

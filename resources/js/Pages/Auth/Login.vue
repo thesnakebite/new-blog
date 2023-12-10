@@ -1,30 +1,30 @@
 <script setup>
-import Checkbox from '@/Components/Checkbox.vue';
+  import Checkbox from '@/Components/Checkbox.vue';
 
-import InputError from '@/Components/InputError.vue';
-import { Link, useForm } from '@inertiajs/vue3';
+  import InputError from '@/Components/InputError.vue';
+  import { Link, useForm } from '@inertiajs/vue3';
 
-defineProps({
-    canResetPassword: {
-        type: Boolean,
-    },
-    status: {
-        type: String,
-    },
-    
-});
+  defineProps({
+      canResetPassword: {
+          type: Boolean,
+      },
+      status: {
+          type: String,
+      },
+      
+  });
 
-const form = useForm({
-    email: '',
-    password: '',
-    remember: false,
-});
+  const form = useForm({
+      email: '',
+      password: '',
+      remember: false,
+  });
 
-const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => form.reset('password'),
-    });
-};
+  const submit = () => {
+      form.post(route('login'), {
+          onFinish: () => form.reset('password'),
+      });
+  };
 </script>
 
 <template>
@@ -74,7 +74,7 @@ const submit = () => {
                     </Link>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                    <button class="btn btn-primary btn-block enter-btn">Entrar</button>
                   </div>
                   <div class="d-flex">
                     <button class="btn btn-facebook col me-2">

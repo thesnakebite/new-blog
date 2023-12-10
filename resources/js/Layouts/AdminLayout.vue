@@ -223,6 +223,12 @@
           <div class="content-wrapper">
 
         <!-- Contenido -->
+        <div v-if="$page.props.flash.message" 
+             class="alert alert-fill-success" role="alert">
+             <i class="mdi mdi-alert-circle"></i>
+              {{ $page.props.flash.message }}
+        </div>
+
           <slot></slot>
             
         </div>
