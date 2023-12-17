@@ -43,8 +43,6 @@
 </script>
 
 <style>
-
-
     input.form-control {
         border: 1px solid #6b7280;
     }
@@ -147,7 +145,6 @@
     .multiselect__placeholder {
         color: #6b7280 !important;
     }
-    
 </style>
 
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
@@ -181,6 +178,7 @@
                                        class="form-control text-sm bg-transparent rounded-none focus:border-blue-600 focus:border-2" 
                                        placeholder="Ingresa aquí el título de la publicación"
                                 >
+                                <label v-if="form.errors.title" class="error mt-2 text-danger">{{ form.errors.title }}</label>
                             </div>
                             <!-- Contenido del post -->
                             <div class="form-group">
@@ -192,6 +190,7 @@
                                     class="text-sm" 
                                     placeholder="Escribe algo increible..." 
                                 />
+                                <label v-if="form.errors.body" class="error mt-2 text-danger">{{ form.errors.body }}</label>
                             </div>
                         </div>
                     </div>
@@ -218,12 +217,13 @@
                                 >
                                     <option class="form-control" 
                                             disabled value="">Selecciona una categoría</option>
-                                    <option v-for="category in categories" 
+                                    <option v-for="category in categories"
                                             :key="category.id" 
                                             :value="category.id">
                                             {{ category.name }}
                                     </option>
                                 </select>
+                                <label v-if="form.errors.category" class="error mt-2 text-danger">{{ form.errors.category }}</label>
                             </div>
                             <!-- Etiquetas -->
                             <div class="form-group">
@@ -252,6 +252,7 @@
                                        class="form-control bg-transparent border-[2px] border-[#6b7280] rounded-none focus:border-blue-600 focus:border-2" 
                                        placeholder="Ingresa aquí el extracto de la publicación"
                                 />
+                                <label v-if="form.errors.excerpt" class="error mt-2 text-danger">{{ form.errors.excerpt }}</label>
                             </div>
 
                             <button class="btn btn-primary me-2 w-full">Guardar publicación</button>

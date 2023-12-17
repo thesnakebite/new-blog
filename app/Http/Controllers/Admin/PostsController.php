@@ -38,28 +38,23 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
+        // Renombra 'category' a 'category_id' antes de la validación.
+        $request->merge(['category_id' => $request->input('category')]);
         
         // Validaciones
-        // $request->validate([
-        //     'title' => 'required|min:5|max:100',
-        //     'excerpt' => 'required|min:5|max:255',
-        //     'body' => 'required|min:5',
-        //     'category_id' => 'required|exists:categories,id',
-        //     'published_at' => 'required|date',
-        //     'tags' => 'required|array'
-        // ]);
+        Post::create($request->validate([
+            'title' =>['required', 'min:5', 'max:60'],
+            'body' => ['required', 'min:5', 'max:500'],
+            'category_id' => ['required', 'exists:categories,id'],
+            'excerpt' => ['required', 'min:5', 'max:100']
+        ]));
 
-        // $post = Post::create($request->only('title', 'excerpt', 'body', 'category_id', 'published_at'));
-
-        // $post->tags()->attach($request->tags);
-
-        // return redirect()->route('admin.posts.index');
         // \Log::info($request->all());
 
         $post = new Post;
         $post->title = $request->get('title');
         $post->body = $request->get('body');
-        $post->published_at = Carbon::parse($request->get('published_at'));
+        $post->published_at = $request->has('published_at') ? Carbon::parse($request->get('published_at')) : null;
         $post->category_id = $request->get('category');
         $post->excerpt = $request->get('excerpt');
         
