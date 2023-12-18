@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Carbon\Carbon;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -12,7 +13,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $posts= Post::with('category', 'tags')->get();
+        $posts = Post::published()->get();
 
         return Inertia::render('Home', [
             'posts' => $posts,
