@@ -971,12 +971,12 @@ h1 {
   font-size: 2em;
 }
 h2 {
-  font-weight: 300;
-  line-height: 1em;
-  margin: 0 0 10px;
-  color: #363539;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 32px;
+  font-weight: 300 !important;
+  line-height: 1em !important;
+  margin: 0 0 10px !important;
+  color: #363539 !important;
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 32px !important;
 }
 h3 {
   font-size: 20px;

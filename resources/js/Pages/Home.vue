@@ -19,6 +19,13 @@ const { props } = defineProps({
      }
 })
 
+const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString('es', {month: 'short'});
+    return { day, month };
+}
+
 
 </script>
 
@@ -28,10 +35,10 @@ const { props } = defineProps({
             <div class="blog-item-header">
                 <!-- Date -->
                 <div class="blog-post-date pull-left">
-                    <span class="day">14</span>
-                    <span class="month">Dec</span>
+                    <span class="day">{{ formatDate(post.published_at).day }}</span>
+                    <span class="month">{{ formatDate(post.published_at).month }}</span>
                 </div>
-                <h2>
+                <h2 class="">
                     <a href="#">{{ post.title }}</a>
                 </h2>
                 <div class="clearfix"></div>

@@ -726,24 +726,24 @@ pre code {
   overflow-y: scroll;
 }
 .container {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  padding-left: 15px  !important;
+  padding-right: 15px !important;
 }
 @media (min-width: 768px) {
   .container {
-    width: 750px;
+    width: 750px !important;
   }
 }
 @media (min-width: 992px) {
   .container {
-    width: 970px;
+    width: 970px !important;
   }
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 1170px !important;
   }
 }
 .container-fluid {
@@ -3683,16 +3683,16 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .container-fluid > .navbar-header,
 .container > .navbar-collapse,
 .container-fluid > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-right: -15px !important;
+  margin-left: -15px !important;
 }
 @media (min-width: 768px) {
   .container > .navbar-header,
   .container-fluid > .navbar-header,
   .container > .navbar-collapse,
   .container-fluid > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
   }
 }
 .navbar-static-top {
@@ -3740,7 +3740,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand,
   .navbar > .container-fluid .navbar-brand {
-    margin-left: -15px;
+    margin-left: -15px !important;
   }
 }
 .navbar-toggle {
@@ -4370,10 +4370,10 @@ a.list-group-item.active > .badge,
   font-weight: 200;
 }
 .container .jumbotron {
-  border-radius: 8px;
+  border-radius: 8px !important;
 }
 .jumbotron .container {
-  max-width: 100%;
+  max-width: 100% !important;
 }
 @media screen and (min-width: 768px) {
   .jumbotron {
@@ -4381,8 +4381,8 @@ a.list-group-item.active > .badge,
     padding-bottom: 48px;
   }
   .container .jumbotron {
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 60px !important;
+    padding-right: 60px !important;
   }
   .jumbotron h1,
   .jumbotron .h1 {
@@ -5608,7 +5608,7 @@ button.close {
 .modal-footer:before,
 .modal-footer:after {
   content: " ";
-  display: table;
+  display: table !important;
 }
 .clearfix:after,
 .container:after,
@@ -5624,7 +5624,7 @@ button.close {
 .pager:after,
 .panel-body:after,
 .modal-footer:after {
-  clear: both;
+  clear: both !important;
 }
 .center-block {
   display: block;
