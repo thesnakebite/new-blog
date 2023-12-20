@@ -18,10 +18,18 @@
 			<div class="col-md-12 margin-top-30">
 				<div id="hornav" class="pull-right visible-lg">
 					<ul class="nav navbar-nav">
-						<li><Link href="/">Home</Link></li>
-						<li><a href="index.html">Contact</a></li>
-						<li><a href="index.html">About</a></li>
-						<li><a href="index.html">Featured</a></li>
+						<li>
+                            <Link href="/">Home</Link>
+                        </li>
+						<li>
+                            <Link href="#">Contact</Link>
+                        </li>
+						<li>
+                            <Link href="#">About</Link>
+                        </li>
+						<li>
+                            <Link href="#">Featured</Link>
+                        </li>
 					</ul>
                 </div>
 			</div>

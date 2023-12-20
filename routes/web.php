@@ -22,7 +22,7 @@ use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'index'] );
 
-Route::get('/blog/{id}', [PostsController::class, 'show'])->name('posts.show');
+Route::get('/blog/{post}', [PostsController::class, 'show'])->name('posts.show');
 
 // Admin
 Route::group([
@@ -31,8 +31,8 @@ Route::group([
      function() {
         Route::get(('/'), [AdminController::class, 'index'])->name('dashboard');
         Route::get('/posts', [AdminPostsController::class, 'index'])->name('admin.posts.index');
-        Route::get('/posts/create', [PostsController::class, 'create'])->name('admin.posts.create');
-        Route::post('/posts', [PostsController::class, 'store'])->name('admin.posts.store');
+        Route::get('/posts/create', [AdminPostsController::class, 'create'])->name('admin.posts.create');
+        Route::post('/posts', [AdminPostsController::class, 'store'])->name('admin.posts.store');
     });
 
 Route::middleware('auth')->group(function () {

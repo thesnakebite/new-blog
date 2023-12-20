@@ -78,7 +78,7 @@ const formatDate = (dateString) => {
                     <div class="col-md-7">
                         <p class="pb-6">{{ post.excerpt }}</p>
                         <!-- Read More -->
-                        <Link :href="route('posts.show',  post.id)" class="btn btn-primary">
+                        <Link :href="route('posts.show',  post.url)" class="btn btn-primary">
                             Leer más <i class="icon-chevron-right readmore-icon"></i>
                         </Link>
                     </div>

@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::with('category', 'tags')->find($id);
+        $post->load('category', 'tags');
 
         return Inertia::render('Show', [
             'post' => $post

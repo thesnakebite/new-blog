@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Post;
-use App\Models\Category;
+use Carbon\Carbon;
 use App\Models\Tag;
+use App\Models\Post;
 use Inertia\Inertia;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 
 class AdminPostsController extends Controller
 {
@@ -42,21 +43,22 @@ class AdminPostsController extends Controller
         $request->merge(['category_id' => $request->input('category')]);
         
         // Validaciones
-        Post::create($request->validate([
+        $request->validate([
             'title' =>['required', 'min:5', 'max:60'],
             'body' => ['required', 'min:5', 'max:500'],
             'category_id' => ['required', 'exists:categories,id'],
             'excerpt' => ['required', 'min:5', 'max:100']
-        ]));
+        ]);
 
         // \Log::info($request->all());
 
         $post = new Post;
-        $post->title = $request->get('title');
-        $post->body = $request->get('body');
-        $post->published_at = $request->has('published_at') ? Carbon::parse($request->get('published_at')) : null;
-        $post->category_id = $request->get('category');
-        $post->excerpt = $request->get('excerpt');
+        $post->title = $request->input('title');
+        $post->url = Str::slug($request->input('title'));
+        $post->body = $request->input('body');
+        $post->published_at = $request->input('published_at') ? Carbon::parse($request->get('published_at')) : null;
+        $post->category_id = $request->input('category');
+        $post->excerpt = $request->input('excerpt');
         
         $post->save();
 
