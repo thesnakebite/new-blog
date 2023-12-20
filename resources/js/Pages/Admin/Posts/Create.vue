@@ -1,6 +1,6 @@
 <script setup>
     import AdminLayout from '@/Layouts/AdminLayout.vue'
-    import { Link, useForm } from '@inertiajs/vue3'
+    import { Head, Link, useForm } from '@inertiajs/vue3'
     import { ref, watch } from 'vue'
 
     import { QuillEditor } from '@vueup/vue-quill'
@@ -151,6 +151,7 @@
 
 <template>
     <AdminLayout>
+        <Head title="Crear una publicación" />
         <div class="page-header">
             <h3 class="page-title">Crear una publicación</h3>
             <nav aria-label="breadcrumb" role="navigation">

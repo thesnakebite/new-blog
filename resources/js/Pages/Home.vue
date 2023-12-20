@@ -1,6 +1,5 @@
 <script setup>
 import SiteLayout from '@/Layouts/SiteLayout.vue';
-import { Link } from '@inertiajs/vue3'
 
 const { props } = defineProps({
     posts: Array,
@@ -30,6 +29,7 @@ const formatDate = (dateString) => {
 
 <template>
     <SiteLayout>
+        <Head title="Inicio" />
         <div v-for="post in posts" :key="post.id" class="blog-post padding-bottom-20">
             <div class="blog-item-header">
                 <!-- Date -->

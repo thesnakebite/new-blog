@@ -1,6 +1,6 @@
 <script setup>
     import AdminLayout from '@/Layouts/AdminLayout.vue'
-    import { usePage, Link } from '@inertiajs/vue3';
+    import { usePage } from '@inertiajs/vue3';
 
     const { auth } = usePage().props;
 
@@ -14,6 +14,7 @@
 
 <template>
   <AdminLayout>
+    <Head title="Publicaciones" />
       <div class="content-wrapper">
         <div class="page-header">
           <h3 class="page-title">Todas las publicaciones</h3>
