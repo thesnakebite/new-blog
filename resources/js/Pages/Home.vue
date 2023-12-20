@@ -1,22 +1,23 @@
 <script setup>
 import SiteLayout from '@/Layouts/SiteLayout.vue';
+import { Link } from '@inertiajs/vue3'
 
 const { props } = defineProps({
     posts: Array,
     canLogin: {
-         type: Boolean,
-     },
-     canRegister: {
-         type: Boolean,
-     },
-     laravelVersion: {
-         type: String,
-         required: true,
-     },
-     phpVersion: {
-         type: String,
-         required: true,
-     }
+        type: Boolean,
+    },
+    canRegister: {
+        type: Boolean,
+    },
+    laravelVersion: {
+        type: String,
+        required: true,
+    },
+    phpVersion: {
+        type: String,
+        required: true,
+    }
 })
 
 const formatDate = (dateString) => {
@@ -25,8 +26,6 @@ const formatDate = (dateString) => {
     const month = date.toLocaleString('es', {month: 'short'});
     return { day, month };
 }
-
-
 </script>
 
 <template>
@@ -79,10 +78,9 @@ const formatDate = (dateString) => {
                     <div class="col-md-7">
                         <p class="pb-6">{{ post.excerpt }}</p>
                         <!-- Read More -->
-                        <a href="#" class="btn btn-primary">
-                            Read More <i class="icon-chevron-right readmore-icon"></i>
-                        </a>
-                        <!-- End Read More -->
+                        <Link :href="route('posts.show',  post.id)" class="btn btn-primary">
+                            Leer más <i class="icon-chevron-right readmore-icon"></i>
+                        </Link>
                     </div>
                 </div>
             </div>

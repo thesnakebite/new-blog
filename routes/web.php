@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\PostsController;
+use App\Http\Controllers\Admin\AdminPostsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Post;
+
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,9 +22,7 @@ use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'index'] );
 
-Route::get('/post', function() {
-    return Post::all();
-});
+Route::get('/blog/{id}', [PostsController::class, 'show'])->name('posts.show');
 
 // Admin
 Route::group([
@@ -31,7 +30,7 @@ Route::group([
     'middleware' => 'auth'],
      function() {
         Route::get(('/'), [AdminController::class, 'index'])->name('dashboard');
-        Route::get('/posts', [PostsController::class, 'index'])->name('admin.posts.index');
+        Route::get('/posts', [AdminPostsController::class, 'index'])->name('admin.posts.index');
         Route::get('/posts/create', [PostsController::class, 'create'])->name('admin.posts.create');
         Route::post('/posts', [PostsController::class, 'store'])->name('admin.posts.store');
     });

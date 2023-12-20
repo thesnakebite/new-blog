@@ -38,7 +38,7 @@ body {
   line-height: 1.7em;
   font-size: 14px;
   background-color: #222124;
-  background-color: #F4F1EA;
+  background-color: #F4F1EA !important;
 }
 .wrapper960,
 .backgrounds .content_background {
@@ -619,7 +619,7 @@ h1.logo-text a {
 }
 /* Dropdown Menu */
 #hornav ul ul {
-  background: #f4f1ea;
+  background: #f4f1ea !important;
   border-radius: 5px;
   border: 1px solid #dddddd;
   position: relative;
@@ -746,7 +746,7 @@ h1.logo-text a {
   list-style: none;
 }
 .sidebar-nav li ul a {
-  background: #f4f1ea;
+  background: #f4f1ea !important;
   color: #555555;
   font-size: 12px;
   border-bottom: solid 1px #d8d6d0;

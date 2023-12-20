@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 
-class PostsController extends Controller
+class AdminPostsController extends Controller
 {
     public function index()
     {

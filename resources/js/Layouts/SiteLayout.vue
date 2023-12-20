@@ -1,4 +1,6 @@
 <script setup>
+
+    import { Link } from '@inertiajs/vue3'
 </script>
 
 <template>
@@ -8,7 +10,7 @@
 			<!-- Logo -->
 			<div class="logo">
 				<a href="/" title="">
-					<img src="front/assets/img/logo.png" alt="Logo" />
+					<img src="/front/assets/img/logo.png" alt="Logo" />
 				</a>
 			</div>
 			
@@ -16,11 +18,10 @@
 			<div class="col-md-12 margin-top-30">
 				<div id="hornav" class="pull-right visible-lg">
 					<ul class="nav navbar-nav">
-						<li><a href="index.html">Home</a></li>
+						<li><Link href="/">Home</Link></li>
 						<li><a href="index.html">Contact</a></li>
 						<li><a href="index.html">About</a></li>
 						<li><a href="index.html">Featured</a></li>
-
 					</ul>
                 </div>
 			</div>
@@ -62,7 +63,7 @@
                         <li>
                             <div class="recent-post">
                                 <a href="#">
-                                    <img class="pull-left" src="front/assets/img/blog/thumbs/thumb1.jpg" alt="thumb1">
+                                    <img class="pull-left" src="/front/assets/img/blog/thumbs/thumb1.jpg" alt="thumb1">
                                 </a>
                                 <a href="#" class="posts-list-title">Sidebar post example</a>
                                 <br>
@@ -75,7 +76,7 @@
                         <li>
                             <div class="recent-post">
                                 <a href="#">
-                                    <img class="pull-left" src="front/assets/img/blog/thumbs/thumb2.jpg" alt="thumb2">
+                                    <img class="pull-left" src="/front/assets/img/blog/thumbs/thumb2.jpg" alt="thumb2">
                                 </a>
                                 <a href="#" class="posts-list-title">Sidebar post example </a>
                                 <br>
@@ -88,7 +89,7 @@
                         <li>
                             <div class="recent-post">
                                 <a href="#">
-                                    <img class="pull-left" src="front/assets/img/blog/thumbs/thumb3.jpg" alt="thumb3">
+                                    <img class="pull-left" src="/front/assets/img/blog/thumbs/thumb3.jpg" alt="thumb3">
                                 </a>
                                 <a href="#" class="posts-list-title">Sidebar post example </a>
                                 <br>
@@ -101,7 +102,7 @@
                         <li>
                             <div class="recent-post">
                                 <a href="#">
-                                    <img class="pull-left" src="front/assets/img/blog/thumbs/thumb4.jpg" alt="thumb4">
+                                    <img class="pull-left" src="/front/assets/img/blog/thumbs/thumb4.jpg" alt="thumb4">
                                 </a>
                                 <a href="#" class="posts-list-title">Sidebar post example </a>
                                 <br>
@@ -124,52 +125,52 @@
                 <div class="col-md-3 margin-bottom-20">
                     <h3 class="margin-bottom-10">Portfolio Highlights</h3>
                     <div class="thumbs-gallery">	
-                        <a class="thumbBox" rel="lightbox-thumbs" href="front/assets/img/thumbsgallery/image1.jpg">
-                            <img src="front/assets/img/thumbsgallery/thumbs/image1.jpg" alt="image1.jpg">
+                        <a class="thumbBox" rel="lightbox-thumbs" href="/front/assets/img/thumbsgallery/image1.jpg">
+                            <img src="/front/assets/img/thumbsgallery/thumbs/image1.jpg" alt="image1.jpg">
                             <i></i>
                         </a>
-                        <a class="thumbBox" rel="lightbox-thumbs" href="front/assets/img/thumbsgallery/image2.jpg">
-                            <img src="front/assets/img/thumbsgallery/thumbs/image2.jpg" alt="image2.jpg">
+                        <a class="thumbBox" rel="lightbox-thumbs" href="/front/assets/img/thumbsgallery/image2.jpg">
+                            <img src="/front/assets/img/thumbsgallery/thumbs/image2.jpg" alt="image2.jpg">
                             <i></i>
                         </a>
-                        <a class="thumbBox" rel="lightbox-thumbs" href="front/assets/img/thumbsgallery/image3.jpg">
-                            <img src="front/assets/img/thumbsgallery/thumbs/image3.jpg" alt="image3.jpg">
+                        <a class="thumbBox" rel="lightbox-thumbs" href="/front/assets/img/thumbsgallery/image3.jpg">
+                            <img src="/front/assets/img/thumbsgallery/thumbs/image3.jpg" alt="image3.jpg">
                             <i></i>
                         </a>
-                        <a class="thumbBox" rel="lightbox-thumbs" href="front/assets/img/thumbsgallery/image4.jpg">
-                            <img src="front/assets/img/thumbsgallery/thumbs/image4.jpg" alt="image4.jpg">
+                        <a class="thumbBox" rel="lightbox-thumbs" href="/front/assets/img/thumbsgallery/image4.jpg">
+                            <img src="/front/assets/img/thumbsgallery/thumbs/image4.jpg" alt="image4.jpg">
                             <i></i>
                         </a>
-                        <a class="thumbBox" rel="lightbox-thumbs" href="front/assets/img/thumbsgallery/image6.jpg">
-                            <img src="front/assets/img/thumbsgallery/thumbs/image6.jpg" alt="image6.jpg">
+                        <a class="thumbBox" rel="lightbox-thumbs" href="/front/assets/img/thumbsgallery/image6.jpg">
+                            <img src="/front/assets/img/thumbsgallery/thumbs/image6.jpg" alt="image6.jpg">
                             <i></i>
                         </a>
-                        <a class="thumbBox" rel="lightbox-thumbs" href="front/assets/img/thumbsgallery/image7.jpg">
-                            <img src="front/assets/img/thumbsgallery/thumbs/image7.jpg" alt="image7.jpg">
+                        <a class="thumbBox" rel="lightbox-thumbs" href="/front/assets/img/thumbsgallery/image7.jpg">
+                            <img src="/front/assets/img/thumbsgallery/thumbs/image7.jpg" alt="image7.jpg">
                             <i></i>
                         </a>
-                        <a class="thumbBox" rel="lightbox-thumbs" href="front/assets/img/thumbsgallery/image8.jpg">
-                            <img src="front/assets/img/thumbsgallery/thumbs/image8.jpg" alt="image8.jpg">
+                        <a class="thumbBox" rel="lightbox-thumbs" href="/front/assets/img/thumbsgallery/image8.jpg">
+                            <img src="/front/assets/img/thumbsgallery/thumbs/image8.jpg" alt="image8.jpg">
                             <i></i>
                         </a>
-                        <a class="thumbBox" rel="lightbox-thumbs" href="front/assets/img/thumbsgallery/image9.jpg">
-                            <img src="front/assets/img/thumbsgallery/thumbs/image9.jpg" alt="image9.jpg">
+                        <a class="thumbBox" rel="lightbox-thumbs" href="/front/assets/img/thumbsgallery/image9.jpg">
+                            <img src="/front/assets/img/thumbsgallery/thumbs/image9.jpg" alt="image9.jpg">
                             <i></i>
                         </a>
-                        <a class="thumbBox" rel="lightbox-thumbs" href="front/assets/img/thumbsgallery/image92.jpg">
-                            <img src="front/assets/img/thumbsgallery/thumbs/image92.jpg" alt="image92.jpg">
+                        <a class="thumbBox" rel="lightbox-thumbs" href="/front/assets/img/thumbsgallery/image92.jpg">
+                            <img src="/front/assets/img/thumbsgallery/thumbs/image92.jpg" alt="image92.jpg">
                             <i></i>
                         </a>
-                        <a class="thumbBox" rel="lightbox-thumbs" href="front/assets/img/thumbsgallery/image94.jpg">
-                            <img src="front/assets/img/thumbsgallery/thumbs/image94.jpg" alt="image94.jpg">
+                        <a class="thumbBox" rel="lightbox-thumbs" href="/front/assets/img/thumbsgallery/image94.jpg">
+                            <img src="/front/assets/img/thumbsgallery/thumbs/image94.jpg" alt="image94.jpg">
                             <i></i>
                         </a>
-                        <a class="thumbBox" rel="lightbox-thumbs" href="front/assets/img/thumbsgallery/image95.jpg">
-                            <img src="front/assets/img/thumbsgallery/thumbs/image95.jpg" alt="image95.jpg">
+                        <a class="thumbBox" rel="lightbox-thumbs" href="/front/assets/img/thumbsgallery/image95.jpg">
+                            <img src="/front/assets/img/thumbsgallery/thumbs/image95.jpg" alt="image95.jpg">
                         <i></i></a>
                         
-                        <a class="thumbBox" rel="lightbox-thumbs" href="front/assets/img/thumbsgallery/image96.jpg">
-                            <img src="front/assets/img/thumbsgallery/thumbs/image96.jpg" alt="image96.jpg">
+                        <a class="thumbBox" rel="lightbox-thumbs" href="/front/assets/img/thumbsgallery/image96.jpg">
+                            <img src="/front/assets/img/thumbsgallery/thumbs/image96.jpg" alt="image96.jpg">
                             <i></i>
                         </a>
                     </div>
