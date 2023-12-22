@@ -32,7 +32,8 @@ Route::group([
         Route::get(('/'), [AdminController::class, 'index'])->name('dashboard');
         Route::get('/posts', [AdminPostsController::class, 'index'])->name('admin.posts.index');
         Route::get('/posts/create', [AdminPostsController::class, 'create'])->name('admin.posts.create');
-        Route::post('/posts', [AdminPostsController::class, 'store'])->name('admin.posts.store');
+        Route::post('/post/store', [AdminPostsController::class, 'store'])->name('admin.posts.store');
+        Route::get('/posts/{post}', [AdminPostsController::class, 'edit'])->name('admin.posts.edit');
     });
 
 Route::middleware('auth')->group(function () {

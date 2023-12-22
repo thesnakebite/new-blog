@@ -47,6 +47,6 @@
             <script src="{{ asset('adminlte/assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>           
             <script src="{{ asset('adminlte/assets/js/file-upload.js') }}"></script>
             <script src="{{ asset('adminlte/assets/js/typeahead.js') }}"></script>
-            
+            <script src="{{ asset('adminlte/assets/js/modal-demo.js')}}"></script>
     </body>
 </html>

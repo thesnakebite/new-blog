@@ -1,11 +1,16 @@
 <script setup>
+    import { ref } from 'vue'
     import AdminLayout from '@/Layouts/AdminLayout.vue'
-    import { usePage } from '@inertiajs/vue3';
+    import { usePage, useForm } from '@inertiajs/vue3'
 
     const { auth } = usePage().props;
 
     const { props } = defineProps({
       posts: Array,
+    })
+
+    const form = useForm({
+        title: null,
     })
 </script>
 
@@ -15,7 +20,7 @@
 <template>
   <AdminLayout>
     <Head title="Publicaciones" />
-      <div class="content-wrapper">
+      
         <div class="page-header">
           <h3 class="page-title">Todas las publicaciones</h3>
             <nav aria-label="breadcrumb" role="navigation">
@@ -29,7 +34,18 @@
         </div>
 
         <div class="card">
-            <div class="card-body">
+            <div class="card-body border-t-2 border-blue-600">
+              <div class="row">
+                <div class="col-sm-12 col-md-6"></div>
+                <div class="col-sm-12 col-md-6 pb-6">
+                    <button
+                      data-bs-toggle="modal" data-bs-target="#exampleModal"
+                      class="btn btn-outline-primary btn-fw pull-right">
+                      Crear publicación
+                    </button>
+                </div>
+              </div>
+              
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
@@ -63,7 +79,7 @@
                                           </div>
                                         </td>
                                         <td>
-                                          <button class="btn btn-outline-primary">View</button>
+                                          <button class="btn btn-outline-primary">Ver</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -73,7 +89,35 @@
                 </div>
             </div>
         </div>
-    </div>
+
+        <!-- Modal starts -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+              <form @submit.prevent="form.post('/admin/posts/store')" class="forms-sample">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Agregar el título de tu nueva publicación</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                        <input 
+                                class="form-control text-sm bg-transparent rounded-none focus:border-blue-600 focus:border-2" 
+                                placeholder="Ingresa aquí el título de la publicación"
+                        >
+                        <label v-if="form.errors.title" class="error mt-2 text-danger">{{ form.errors.title }}</label>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button class="btn btn-success">Crear publicación</button>
+                      <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
   </AdminLayout>
 
 </template>
