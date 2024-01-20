@@ -1,7 +1,7 @@
 <script setup>
     import { ref } from 'vue'
     import AdminLayout from '@/Layouts/AdminLayout.vue'
-    import { usePage, useForm } from '@inertiajs/vue3'
+    import { usePage, useForm, router } from '@inertiajs/vue3'
 
     const { auth } = usePage().props;
 
@@ -10,8 +10,14 @@
     })
 
     const form = useForm({
-        title: null,
+        title: '',
     })
+    
+    function submit() {
+      form.put(route('admin.posts.store'), {
+        onSuccess: () => form.reset()
+      })
+    }
 </script>
 
 <style scoped>
@@ -92,32 +98,31 @@
 
         <!-- Modal starts -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-md" role="document">
-              <form @submit.prevent="form.post('/admin/posts/store')" class="forms-sample">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Agregar el título de tu nueva publicación</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                        <input 
-                                class="form-control text-sm bg-transparent rounded-none focus:border-blue-600 focus:border-2" 
-                                placeholder="Ingresa aquí el título de la publicación"
-                        >
-                        <label v-if="form.errors.title" class="error mt-2 text-danger">{{ form.errors.title }}</label>
+            <form @submit.prevent="submit" class="forms-sample">
+                <div class="modal-dialog modal-md" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Agregar el título de tu nueva publicación</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal">
+                                  <span aria-hidden="true">×</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group">
+                              <input  v-model="form.title"
+                                      class="form-control text-sm bg-transparent rounded-none focus:border-blue-600 focus:border-2" 
+                                      placeholder="Ingresa aquí el título de la publicación"
+                              >
+                              <label v-if="form.errors.title" class="error mt-2 text-danger">{{ form.errors.title }}</label>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success">Crear publicación</button>
+                            <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+                        </div>
                     </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button class="btn btn-success">Crear publicación</button>
-                      <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
-                  </div>
                 </div>
-              </form>
-            </div>
+            </form>
         </div>
   </AdminLayout>
-
 </template>
