@@ -1,30 +1,30 @@
 <script setup>
-import SiteLayout from '@/Layouts/SiteLayout.vue';
+    import SiteLayout from '@/Layouts/SiteLayout.vue';
 
-const { props } = defineProps({
-    posts: Array,
-    canLogin: {
-        type: Boolean,
-    },
-    canRegister: {
-        type: Boolean,
-    },
-    laravelVersion: {
-        type: String,
-        required: true,
-    },
-    phpVersion: {
-        type: String,
-        required: true,
+    const { props } = defineProps({
+        posts: Array,
+        canLogin: {
+            type: Boolean,
+        },
+        canRegister: {
+            type: Boolean,
+        },
+        laravelVersion: {
+            type: String,
+            required: true,
+        },
+        phpVersion: {
+            type: String,
+            required: true,
+        }
+    })
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = date.getDate();
+        const month = date.toLocaleString('es', {month: 'short'});
+        return { day, month };
     }
-})
-
-const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = date.getDate();
-    const month = date.toLocaleString('es', {month: 'short'});
-    return { day, month };
-}
 </script>
 
 <template>

@@ -72,6 +72,9 @@ class AdminPostsController extends Controller
 
     public function update(Post $post, Request $request)
     {
+
+        Inertia::setRootView('admin');
+
         // Renombra 'category' a 'category_id' antes de la validación.
         $request->merge(['category_id' => $request->input('category')]);
         
@@ -80,21 +83,22 @@ class AdminPostsController extends Controller
             'title' =>['required', 'min:5', 'max:60'],
             'body' => ['required', 'min:5', 'max:500'],
             'category_id' => ['required', 'exists:categories,id'],
+            'tags' => ['required'],
             'excerpt' => ['required', 'min:5', 'max:100']
         ]);
 
           // \Log::info($request->all());
 
-          $post = Post::create([
-            'title' => $request->get('title'),
-            'url' => Str::slug($request->get('title')),
-            'body' => $request->get('body'),
-            'published_at' => $request->get('published_at') ? Carbon::parse($request->get('published_at')) : null,
-            'category_id' => $request->get('category_id'),
-            'excerpt' => $request->get('excerpt')
-        ]);
+        $post->title= $request->get('title');
+        $post->url= Str::slug($request->get('title'));
+        $post->body= $request->get('body');
+        $post->published_at= $request->get('published_at') ? Carbon::parse($request->get('published_at')) : null;
+        $post->category_id= $request->get('category_id');
+        $post->excerpt= $request->get('excerpt');
+        $post->save();
 
         $post->tags()->sync($request->get('tags'));
+    
         return back()->with('success', 'Tu publicación ha sido guardada.');
     }
 }

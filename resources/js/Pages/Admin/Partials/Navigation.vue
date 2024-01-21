@@ -68,38 +68,38 @@
             <span class="nav-link">Navegación</span>
         </li>
         <li class="nav-item menu-items" :class="{'active': isActive('dashboard')}">
-        <a class="nav-link"
+        <Link class="nav-link"
               :href="route('dashboard')"
         >
             <span class="menu-icon">
             <i class="mdi mdi-view-dashboard"></i>
             </span>
             <span class="menu-title">Inicio</span>
-        </a>
+        </Link>
         </li>
         <li class="nav-item menu-items" :class="{'active': isActive('admin.posts.index')}">
-            <a class="nav-link" data-bs-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
+            <Link class="nav-link" data-bs-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
                 <span class="menu-icon">
                     <i class="mdi mdi-view-list"></i>
                 </span>
                 <span class="menu-title">Blog</span>
                     <i class="menu-arrow"></i>
-            </a>
+            </Link>
             <div class="visible" id="page-layouts">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" 
+                        <Link class="nav-link" 
                            :href="route('admin.posts.index')"
                         >
-                        Ver todos los posts
-                        </a>
+                            Ver todos los posts
+                        </Link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" 
+                        <Link class="nav-link" 
                            :href="route('admin.posts.create')"
                         >
                         Crear un post
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>

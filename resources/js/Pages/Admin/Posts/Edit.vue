@@ -1,18 +1,20 @@
 <script setup>
-    import { ref, watch } from 'vue'
     import AdminLayout from '@/Layouts/AdminLayout.vue'
-    import { usePage, useForm, router } from '@inertiajs/vue3'
+    import { useForm } from '@inertiajs/vue3'
+    import { ref, watch } from 'vue'
+
     import { QuillEditor } from '@vueup/vue-quill'
     import '@vueup/vue-quill/dist/vue-quill.snow.css'
     import VueDatePicker from '@vuepic/vue-datepicker';
     import '@vuepic/vue-datepicker/dist/main.css'
     import VueMultiselect from 'vue-multiselect';
 
-    const props = defineProps({
-        post: Array,
-        categories: Array,
-        tags: Array,
-    });
+    const { post, categories, tags, textInputOptions } = defineProps([
+        'post',
+        'categories',
+        'tags',
+        'textInputOptions',
+    ]);
 
     const selectedTags = ref([]);
 
@@ -31,30 +33,31 @@
     }
 
     const form = useForm({
-        title: null,
-        body: null,
-        published_at: null,
-        category: '',
-        tags: [],
-        excerpt: null,
-    })
+        title: ref(post.title),
+        body: ref(post.body),
+        published_at: ref(post.published_at),
+        category: ref(post.category_id),
+        tags: ref(() => post.tags ? post.tags.map(tag => ({ id: tag.id, label: tag.name })) : []),
+        excerpt: ref(post.excerpt),
+    });
 
     function submit() {
-      form.post(route('admin.posts.update'), {
-        onSuccess: () => form.reset()
-      })
+        form.put(route('admin.posts.update', {post}), {
+            preserveScroll: true,
+            onSuccess: (event) => {
+                const response = event.detail.response;
+
+                props.post.title = response.title;
+                props.post.body = response.body;
+                props.post.published_at = response.published_at;
+                props.post.category_id = response.category_id;
+                props.post.tags = response.tags.map(tag => ({ id: tag.id, label: tag.name }));
+                props.post.excerpt = response.excerpt;
+                form.reset();
+            }
+        })
     }
-
-    watch(() => form.title, (newTitle, oldTitle) => {
-        console.log('Nuevo título:', newTitle);
-        console.log('Antiguo título:', oldTitle);
-
-    if (!oldTitle) {
-        form.title = 'Valor por defecto';
-    }
-});
-
-        
+    
 </script>
 
 <style>
@@ -163,11 +166,121 @@
 </style>
 
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
+
 <template>
     <AdminLayout>
-        <h1 class="flex justify-center items-center min-h-screen">
-            <span class="text-3xl text-gray-500">Editar publicación de {{ post.title }}</span>
-        </h1>
-        
+        <Head title="Crear una publicación" />
+
+        <div class="page-header">
+            <h3 class="page-title">Crear una publicación</h3>
+            <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb bg-inverse-primary">
+                    <li class="breadcrumb-item flex-inline items-center justify-center">
+                        <Link :href="route('dashboard')">Inicio</Link>
+                    </li>
+                    <li class="breadcrumb-item" aria-current="page">
+                        <Link :href="route('admin.posts.index')">Posts</Link>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Crear</li>
+                </ol>
+            </nav>
+        </div>
+
+        <form @submit.prevent="submit" class="forms-sample">
+            
+            <div class="row">
+                <div class="col-md-8 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body border-t-2 border-blue-600">
+                            <!-- Título -->
+                            <div class="form-group">
+                                <label>Título de la publicación</label>
+                                <input v-model="form.title" 
+                                       class="form-control text-sm bg-transparent rounded-none focus:border-blue-600 focus:border-2" 
+                                       placeholder="Ingresa aquí el título de la publicación"
+                                >
+                                <label v-if="form.errors.title" class="error mt-2 text-danger">{{ form.errors.title }}</label>
+                            </div>
+                            <!-- Contenido del post -->
+                            <div class="form-group">
+                                <label>Contenido de la publicación</label>
+                                <QuillEditor 
+                                    v-model:content="form.body"
+                                    :content-type="'html'" 
+                                    theme="snow" 
+                                    class="text-sm" 
+                                    placeholder="Escribe algo increible..." 
+                                />
+                                <label v-if="form.errors.body" class="error mt-2 text-danger">{{ form.errors.body }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body border-t-2 border-blue-600">
+                            <!-- Fecha del post -->
+                            <div class="form-group">
+                                <label>Fecha de publicación</label>
+
+                                <VueDatePicker 
+                                    v-model="form.published_at" 
+                                    placeholder="Empieza a escribir ..."
+                                    :text-input="textInputOptions"
+                                />
+                            </div>
+                            <!-- Categorías -->
+                            <div class="form-group">
+                                <label>Categorías</label>
+                                <select v-model="form.category" 
+                                        class="js-example-basic-single w-full"
+                                >
+                                    <option class="form-control" 
+                                            disabled value="">Selecciona una categoría</option>
+                                    <option v-for="category in categories"
+                                            :key="category.id" 
+                                            :value="category.id">
+                                            {{ category.name }}
+                                    </option>
+                                </select>
+                                <label v-if="form.errors.category" class="error mt-2 text-danger">{{ form.errors.category }}</label>
+                            </div>
+                            <!-- Etiquetas -->
+                            <div class="form-group">
+                                <label>Etiquetas</label>
+                                <VueMultiselect
+                                    class="focus:border-blue-600 focus:border-2"
+                                    v-model="selectedTags"
+                                    :options="tags"
+                                    :multiple="true"
+                                    :taggable="true"
+                                    :close-on-select="true"
+                                    :clear-on-select="true"
+                                    :preserve-search="true"
+                                    @tag="handleSelect"
+                                    placeholder="Selecciona una o varias etiquetas"
+                                    label="name"
+                                    track-by="id"
+                                    @select="handleSelect"
+                                    @remove="handleRemove"
+                                />
+                            </div>
+                            <!-- Extracto -->
+                            <div class="form-group">
+                                <label>Extracto de la publicación</label>
+                                <input v-model="form.excerpt" 
+                                       class="form-control bg-transparent border-[2px] border-[#6b7280] rounded-none focus:border-blue-600 focus:border-2" 
+                                       placeholder="Ingresa aquí el extracto de la publicación"
+                                />
+                                <label v-if="form.errors.excerpt" class="error mt-2 text-danger">{{ form.errors.excerpt }}</label>
+                            </div>
+
+                            <button :disabled="form.processing" class="btn btn-primary me-2 w-full">{{ form.processing ? 'Enviando' : 'Guardar publicación' }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </AdminLayout>
 </template>

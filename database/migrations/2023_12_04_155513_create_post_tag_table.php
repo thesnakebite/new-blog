@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('tag_id');
 
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 
