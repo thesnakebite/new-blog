@@ -91,12 +91,13 @@
                         <Link class="nav-link" 
                            :href="route('admin.posts.index')"
                         >
-                            Ver todos los posts
+                            Ver todos los post
                         </Link>
                     </li>
                     <li class="nav-item">
-                        <Link class="nav-link" 
-                           :href="route('admin.posts.create')"
+                        <Link class="nav-link"
+                              data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                              href="#"
                         >
                         Crear un post
                         </Link>

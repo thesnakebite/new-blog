@@ -33,6 +33,7 @@
                               <input v-model="form.title"
                                      class="form-control text-sm bg-transparent rounded-none focus:border-blue-600 focus:border-2" 
                                      placeholder="Ingresa aquí el título de la publicación"
+                                     required
                               >
                               <label v-if="form.errors.title" class="error mt-2 text-danger">{{ form.errors.title }}</label>
                           </div>

@@ -37,7 +37,7 @@
         body: ref(post.body),
         published_at: ref(post.published_at),
         category: ref(post.category_id),
-        tags: ref(() => post.tags ? post.tags.map(tag => ({ id: tag.id, label: tag.name })) : []),
+        tags: ref(() => post.tags ? post.tags.map(tag => ({ id: tag.id })) : []),
         excerpt: ref(post.excerpt),
     });
 
@@ -47,11 +47,13 @@
             onSuccess: (event) => {
                 const response = event.detail.response;
 
+                console.log('Response from server:', response); 
+
                 props.post.title = response.title;
                 props.post.body = response.body;
                 props.post.published_at = response.published_at;
                 props.post.category_id = response.category_id;
-                props.post.tags = response.tags.map(tag => ({ id: tag.id, label: tag.name }));
+                props.post.selectedTags = response.tags.map(tag => ({ id: tag.id }));
                 props.post.excerpt = response.excerpt;
                 form.reset();
             }
@@ -251,7 +253,7 @@
                                 <label>Etiquetas</label>
                                 <VueMultiselect
                                     class="focus:border-blue-600 focus:border-2"
-                                    v-model="selectedTags"
+                                    v-model="form.selectedTags"
                                     :options="tags"
                                     :multiple="true"
                                     :taggable="true"
