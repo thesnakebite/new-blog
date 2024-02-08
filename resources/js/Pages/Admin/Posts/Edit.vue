@@ -8,6 +8,7 @@
     import VueDatePicker from '@vuepic/vue-datepicker';
     import '@vuepic/vue-datepicker/dist/main.css'
     import VueMultiselect from 'vue-multiselect';
+    import Dropzone from '@/Components/Dropzone.vue'
 
     const { post, categories, tags, textInputOptions } = defineProps([
         'post',
@@ -58,6 +59,16 @@
                 form.reset();
             }
         })
+    }
+
+    let dropzoneFile = ref("")
+
+    const drop = (e) => {
+        dropzoneFile.value = e.dataTransfer.files[0];
+    }
+
+    const selectedFile = () => {
+        dropzoneFile.value = document.querySelector('.dropzoneFile').files[0];
     }
     
 </script>
@@ -276,6 +287,15 @@
                                        placeholder="Ingresa aquí el extracto de la publicación"
                                 />
                                 <label v-if="form.errors.excerpt" class="error mt-2 text-danger">{{ form.errors.excerpt }}</label>
+                            </div>
+                            <!-- Imagenes -->
+                            <div class="form-group">
+
+                                <Dropzone 
+                                    @drop.prevent="drop" 
+                                    @change="selectedFile" 
+                                />
+                                <span class="text-xs file-info">File: {{ dropzoneFile.name }}</span>
                             </div>
 
                             <button :disabled="form.processing" class="btn btn-primary me-2 w-full">{{ form.processing ? 'Enviando' : 'Guardar publicación' }}</button>

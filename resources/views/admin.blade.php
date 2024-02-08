@@ -16,7 +16,8 @@
 
         <link rel="shortcut icon" href="{{ asset('adminlte/assets/images/favicon.png') }}" />
         <link rel="stylesheet" href="{{ asset('adminlte/assets/vendors/font-awesome/css/font-awesome.min.css') }}" />
-
+     
+        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/basic.min.css" integrity="sha512-MeagJSJBgWB9n+Sggsr/vKMRFJWs+OUphiDV7TJiYu+TNQD9RtVJaPDYP8hA/PAjwRnkdvU+NsTncYTKlltgiw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 
         @routes
         
@@ -48,5 +49,8 @@
             <script src="{{ asset('adminlte/assets/js/file-upload.js') }}"></script>
             <script src="{{ asset('adminlte/assets/js/typeahead.js') }}"></script>
             <script src="{{ asset('adminlte/assets/js/modal-demo.js')}}"></script>
+           
+            {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone-amd-module.min.js"></script> --}}
+            
     </body>
 </html>
